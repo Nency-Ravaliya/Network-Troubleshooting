@@ -11,7 +11,7 @@ This guide outlines a series of commands to diagnose issues with accessing googl
 ping google.com
 ```
 
-Expected Output:
+## Expected Output:
 
 ```
 PING google.com (142.250.190.14): 56 data bytes
@@ -19,9 +19,9 @@ PING google.com (142.250.190.14): 56 data bytes
 64 bytes from 142.250.190.14: icmp_seq=1 ttl=113 time=11.8 ms
 ```
 
-Explanation: If you get replies, it means the network path to google.com is operational. If you see "Request timed out" or no response, there might be a network issue or google.com might be down.
+### Explanation: If you get replies, it means the network path to google.com is operational. If you see "Request timed out" or no response, there might be a network issue or google.com might be down.
 
-2. traceroute
+## 2. traceroute
 Purpose: Identify the route packets take to reach google.com and see where delays or failures occur.
 Command:
 
