@@ -21,7 +21,7 @@ PING google.com (142.250.190.14): 56 data bytes
 
 ### Explanation: If you get replies, it means the network path to google.com is operational. If you see "Request timed out" or no response, there might be a network issue or google.com might be down.
 
-## 2. traceroute
+## 2. `traceroute`
 **Purpose:** Identify the route packets take to reach google.com and see where delays or failures occur.
 **Command:**
 
@@ -37,7 +37,7 @@ traceroute to google.com (142.250.190.14), 30 hops max, 60 byte packets
 
 ### Explanation: This shows each hop between your computer and google.com. If you see * * *, it means a hop didn’t respond. Persistent * * * or high latencies may indicate where the problem is.
 
-## 3. netstat
+## 3. `netstat`
 **Purpose:** Check if any local services are using network ports that might affect connectivity.
 **Command:**
 
@@ -53,7 +53,7 @@ tcp6       0      0 :::80                   :::*                    LISTEN
 
 ### Explanation: This shows the open ports and services running on your local machine. Ensure there are no unexpected services blocking necessary ports.
 
-## 4. telnet
+## 4. `telnet`
 **Purpose:** Check connectivity to specific ports on google.com.
 **Command:**
 
@@ -68,7 +68,7 @@ Escape character is '^]'.
 
 ### Explanation: If the connection is successful, you’ll get a blank screen or a response from the server. If it fails, there may be issues with connectivity or the port might be blocked.
 
-## 5. tcpdump
+## 5. `tcpdump`
 **Purpose:** Capture and analyze network packets to see if requests to google.com are being sent and received correctly.
 **Command:**
 
