@@ -80,13 +80,91 @@ Escape character is '^]'.
 15:30:01.234567 IP google.com.http > your-computer.12345: Flags [.], ack 123489, win 12345, length 0
 ```
 
-### Explanation: Shows packets being sent and received. If you see no packets, there might be an issue with your network configuration or connectivity to google.com.
+## 6. `nslookup`
 
-# Summary
-`ping`: Verify basic connectivity.
-`traceroute`: Identify routing path and potential delays.
-`netstat`: Check local network connections.
-`telnet`: Test connectivity to specific ports.
-`tcpdump`: Capture and analyze network traffic.
+**Purpose:** Query the Domain Name System (DNS) to get the IP address of google.com.
 
-By using these commands in sequence, you can pinpoint where the issue might be occurring, whether it's a connectivity problem, a routing issue, or something on the local machine.
+**Command:**
+
+```bash
+nslookup google.com
+```
+
+```
+Server:         192.168.1.1
+Address:        192.168.1.1#53
+
+Non-authoritative answer:
+Name:   google.com
+Address: 142.250.190.14
+```
+
+### Explanation: This checks if your DNS server can resolve google.com to its IP address. If it fails, there might be an issue with your DNS configuration or the server you're querying.
+
+## 7. `dig`
+**Purpose:** Provides detailed DNS query information about google.com, including its IP address and authoritative DNS servers.
+
+**Command:**
+`dig google.com`
+
+```
+;; ANSWER SECTION:
+google.com.     299 IN  A   142.250.190.14
+```
+
+### Explanation: This command gives a detailed view of DNS queries. It’s useful for seeing how DNS queries are resolved and finding out additional details about the domain's DNS settings.
+
+## 8. `curl`
+Purpose: Test HTTP/HTTPS connectivity to google.com.
+
+**Command:**
+
+`curl -I https://www.google.com`
+
+```
+HTTP/2 200 
+content-type: text/html; charset=ISO-8859-1
+date: Tue, 10 Sep 2024 12:00:00 GMT
+```
+
+### Explanation: This shows if an HTTP connection to google.com is possible and provides some details about the response. If it fails, the issue might be with web access or firewall rules.
+
+## 9. `arp`
+**Purpose:** View and manage the ARP (Address Resolution Protocol) table, which maps IP addresses to MAC addresses.
+
+**Command:**
+`arp -a`
+
+`google.com (142.250.190.14) at 00:aa:bb:cc:dd:ee [ether] on eth0`
+
+### Explanation: This shows the current ARP table entries and maps known IP addresses to MAC addresses. If your system cannot resolve IP-to-MAC, it may point to a local network issue.
+
+## 10. `systemctl`
+**Purpose:** Check if network services are running properly on your machine.
+
+**Command:**
+`systemctl status NetworkManager`
+
+```
+● NetworkManager.service - Network Manager
+   Loaded: loaded (/lib/systemd/system/NetworkManager.service; enabled; vendor preset: enabled)
+   Active: active (running)
+```
+### Explanation: Ensures that the network manager service is running correctly. If it's inactive or failed, network configuration might not work properly.
+
+# Network Troubleshooting Summary
+
+## Summary
+
+- **ping:** Verify basic connectivity.
+- **traceroute:** Identify routing path and potential delays.
+- **netstat:** Check local network connections.
+- **telnet:** Test connectivity to specific ports.
+- **tcpdump:** Capture and analyze network traffic.
+- **nslookup:** Query DNS and get the IP address of a domain.
+- **dig:** Provides detailed DNS query information.
+- **curl:** Test HTTP/HTTPS connectivity.
+- **arp:** Manage ARP table entries (IP to MAC address mappings).
+- **systemctl:** Ensure network services are running properly.
+
+By using these commands in sequence, you can pinpoint where the issue might be occurring—whether it’s a connectivity problem, a DNS resolution issue, or something on the local machine.
